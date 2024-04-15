@@ -138,30 +138,16 @@ describe('isValidUsername', () => {
 })
 
 describe('canDrive', () => {
-  it('should return true for min age in the US', () => {
-    expect(canDrive(16, 'US')).toBe(true)
+  it.each([
+    { age: 15, country: 'US', result: false },
+    { age: 16, country: 'US', result: true },
+    { age: 17, country: 'US', result: true },
+    { age: 16, country: 'UK', result: false },
+    { age: 17, country: 'UK', result: true },
+    { age: 18, country: 'UK', result: true },
+  ])('should return $result if $age, $country', ({ age, country, result }) => {
+    expect(canDrive(age, country)).toBe(result)
   })
-
-  it('should return true eligible age in the US', () => {
-    expect(canDrive(17, 'US')).toBe(true)
-  })
-
-  it('should return false for underage in the US', () => {
-    expect(canDrive(15, 'US')).toBe(false)
-  })
-
-  it('should return true for min age in the UK', () => {
-    expect(canDrive(17, 'UK')).toBe(true)
-  })
-
-  it('should return true eligible age in the UK', () => {
-    expect(canDrive(18, 'UK')).toBe(true)
-  })
-
-  it('should return false for underage in the UK', () => {
-    expect(canDrive(16, 'UK')).toBe(false)
-  })
-
   it('should return false for invalide contry code', () => {
     expect(canDrive(18, 'IS')).toMatch(/invalid/i)
   })
