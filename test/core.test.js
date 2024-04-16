@@ -1,4 +1,12 @@
-import { describe, it, expect } from 'vitest'
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  beforeAll,
+  afterEach,
+  afterAll,
+} from 'vitest'
 import {
   calculateDiscount,
   canDrive,
@@ -59,8 +67,6 @@ describe('calculateDiscount', () => {
   })
 })
 
-// note: NotComplited
-
 describe('validateUserInput', () => {
   it('should return success if user input is valid', () => {
     expect(validateUserInput('umar', 19)).toMatch(/success/i)
@@ -100,7 +106,7 @@ describe('isPriceInRange', () => {
     { scenario: 'price = min', price: 0, result: true },
     { scenario: 'price between min and max', price: 50, result: true },
     { scenario: 'price = max', price: 100, result: true },
-    { scenario: 'price > max', price: 101, result: false }
+    { scenario: 'price > max', price: 101, result: false },
   ])('Should return  $result when $scenario', ({ price, result }) => {
     expect(isPriceInRange(price, 0, 100)).toBe(result)
   })
@@ -159,4 +165,26 @@ describe('fetchData', () => {
       expect(error.reason).toMatch(/fail/i)
     }
   })
+})
+
+describe('Test suite', () => {
+  beforeAll(() => {
+    console.log('beforeAll called')
+  })
+
+  beforeEach(() => {
+    console.log('beforeEach called')
+  })
+
+  afterAll(() => {
+    console.log('afterAll called')
+  })
+
+  afterEach(() => {
+    console.log('afterEach called')
+  })
+  
+  it('test case 1', () => {})
+
+  it('test case 1', () => {})
 })
