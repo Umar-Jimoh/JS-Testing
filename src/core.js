@@ -65,9 +65,7 @@ export function canDrive(age, countryCode) {
   if (!legalDrivingAge[countryCode]) {
     return 'Invalid country code';
   }
-
   
-
   return age >= legalDrivingAge[countryCode];
 }
 
