@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   calculateDiscount,
   canDrive,
+  fetchData,
   getCoupons,
   isPriceInRange,
   isValidUsername,
@@ -146,5 +147,16 @@ describe('canDrive', () => {
   })
   it('should return false for invalide contry code', () => {
     expect(canDrive(18, 'IS')).toMatch(/invalid/i)
+  })
+})
+
+describe('fetchData', () => {
+  it('should return a promise that will resolve to an array of numbers', async () => {
+    try {
+      const result = await fetchData()
+    } catch (error) {
+      expect(error).toHaveProperty('reason')
+      expect(error.reason).toMatch(/fail/i)
+    }
   })
 })
