@@ -9,3 +9,15 @@ describe('test suite', () => {
         console.log(result);
     })
 })
+
+describe('test suite', () => {
+    it('test case', () => {
+        const sendText = vi.fn()
+        sendText.mockReturnValue('ok')
+
+        const result = sendText('message')
+
+        expect(sendText).toHaveBeenCalled('message')
+        expect(result).toBe('ok')
+    })
+})
